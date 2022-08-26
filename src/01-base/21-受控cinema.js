@@ -17,7 +17,6 @@ export default class Cinema extends Component {
             }
         }).then(res => {
             this.setState({
-                allLists: res.data.data.cinemas,
                 cinemeLists: res.data.data.cinemas
             })
         })
