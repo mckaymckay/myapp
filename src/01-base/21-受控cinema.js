@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { getCinemaLists } from '../request/api.js'
 import './01-css/03-css.css'
 
 export default class Cinema extends Component {
@@ -9,17 +9,22 @@ export default class Cinema extends Component {
     }
     constructor() {
         super()
-        axios({
-            url: 'https://m.maizuo.com/gateway?cityId=110100&ticketFlag=1&k=707724',
-            headers: {
-                "X-Client-Info": '{"a":"3000","ch":"1002","v":"5.2.1","e":"1660563256469624609046529","bc":"110100"}',
-                "X-Host": "mall.film-ticket.cinema.list"
-            }
-        }).then(res => {
+        getCinemaLists().then(res => {
             this.setState({
                 cinemeLists: res.data.data.cinemas
             })
         })
+        // axios({
+        //     url: 'https://m.maizuo.com/gateway?cityId=110100&ticketFlag=1&k=707724',
+        //     headers: {
+        //         "X-Client-Info": '{"a":"3000","ch":"1002","v":"5.2.1","e":"1660563256469624609046529","bc":"110100"}',
+        //         "X-Host": "mall.film-ticket.cinema.list"
+        //     }
+        // }).then(res => {
+        //     this.setState({
+        //         cinemeLists: res.data.data.cinemas
+        //     })
+        // })
     }
 
     render () {
